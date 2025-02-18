@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const MUTATION_REPLAY_STEP = gql`
   mutation ReplayStepNumberFromRunId($runId: String, $stepNumber: String) {

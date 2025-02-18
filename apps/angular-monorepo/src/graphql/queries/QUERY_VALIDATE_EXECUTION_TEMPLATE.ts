@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_VALIDATE_EXECUTION_TEMPLATE = gql`
   query ValidateExecutionTemplate($executionTemplate: ExecutionTemplateInput) {
-    validateExecutionTemplate(executionTemplate: $executionTemplate) {
+    validateExecutionTemplate(executionTemplate: $executionTemplate)  {
       name
       version {
         id

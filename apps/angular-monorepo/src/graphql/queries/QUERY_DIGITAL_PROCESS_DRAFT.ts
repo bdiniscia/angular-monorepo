@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_DIGITAL_PROCESS_DRAFT = gql`
   query DigitalProcessDraft($executionTemplateId: String) {

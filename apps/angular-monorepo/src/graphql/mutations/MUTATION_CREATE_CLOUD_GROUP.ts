@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const MUTATION_CREATE_CLOUD_GROUP = gql`
   mutation CreateCloudGroup($cloudGroup: CloudGroupInput) {

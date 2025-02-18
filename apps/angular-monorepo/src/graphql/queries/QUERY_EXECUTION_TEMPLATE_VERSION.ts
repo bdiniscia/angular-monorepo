@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_TEMPLATE_VERSION = gql`
   query ExecutionTemplateVersion(
@@ -8,7 +8,7 @@ export const QUERY_EXECUTION_TEMPLATE_VERSION = gql`
     executionTemplateVersion(
       id: $executionTemplateId
       vId: $executionTemplateVId
-    ) {
+    )  {
       UseCases {
         id
       }

@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_TEMPLATE_RUNS_DETAILS = gql`
   query ExecutionTemplateRunsDetails(
@@ -12,7 +12,7 @@ export const QUERY_EXECUTION_TEMPLATE_RUNS_DETAILS = gql`
       paging: $paging
       sort: $sort
       filter: $filter
-    ) {
+    )  {
       paging {
         page
         pageSize

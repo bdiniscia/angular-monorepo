@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_TEMPLATE = gql`
   query ExecutionTemplate($executionTemplateId: String) {
-    executionTemplate(id: $executionTemplateId) {
+    executionTemplate(id: $executionTemplateId)  {
       UseCases {
         id
       }

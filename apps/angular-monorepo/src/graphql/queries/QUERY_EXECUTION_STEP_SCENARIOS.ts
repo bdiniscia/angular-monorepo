@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_STEP_SCENARIOS = gql`
   query ExecutionStepScenarios(

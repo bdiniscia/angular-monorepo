@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_WEBHOOK_DATA_V2 = gql`
   query WebhooksEventsFilteredByHeaders($header: String, $value: String) {
-    webhooksEventsFilteredByHeaders(header: $header, value: $value) {
+    webhooksEventsFilteredByHeaders(header: $header, value: $value)  {
       attempts
       cli_id
       created_at

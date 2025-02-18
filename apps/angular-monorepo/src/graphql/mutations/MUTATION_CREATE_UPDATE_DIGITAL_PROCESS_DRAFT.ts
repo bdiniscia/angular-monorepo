@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const MUTATION_CREATE_UPDATE_DIGITAL_PROCESS_DRAFT = gql`
   mutation CreateOrUpdateDraft(

@@ -2,7 +2,7 @@ import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_TEMPLATES = gql`
   query ExecutionTemplates {
-    executionTemplates {
+    executionTemplates  {
       active
       description
       id

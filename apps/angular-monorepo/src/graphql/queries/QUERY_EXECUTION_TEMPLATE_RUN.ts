@@ -1,11 +1,11 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_TEMPLATE_RUN = gql`
   query ExecutionTemplateRun($runId: String, $executionTemplateId: String) {
     executionTemplateRunDetails(
       executionTemplateId: $executionTemplateId
       runId: $runId
-    ) {
+    )  {
       id
       name
       templateVersion {
@@ -148,7 +148,7 @@ export const QUERY_EXECUTION_TEMPLATE_RUN = gql`
       start
       finishAt
     }
-    executionTemplate(id: $executionTemplateId) {
+    executionTemplate(id: $executionTemplateId)  {
       name
       version {
         id
@@ -156,7 +156,7 @@ export const QUERY_EXECUTION_TEMPLATE_RUN = gql`
       }
       id
     }
-    getDraft(id: $executionTemplateId) {
+    getDraft(id: $executionTemplateId)  {
       id
       name
       version {

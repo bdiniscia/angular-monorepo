@@ -1,8 +1,8 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_SCENARIO_BLUEPRINT = gql`
   query IntegromatScenarioBlueprint($teamId: Int, $scenarioId: String) {
-    integromatScenarioBlueprint(teamId: $teamId, scenarioId: $scenarioId) {
+    integromatScenarioBlueprint(teamId: $teamId, scenarioId: $scenarioId)  {
       id
       teamId
       blueprint {

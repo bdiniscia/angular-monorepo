@@ -1,15 +1,15 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_EXECUTION_TRIGGER_SCENARIOS = gql`
   query ExecutionTriggerScenarios($teamId: Int) {
-    cxpAccount {
+    cxpAccount  {
       name
       integromatTeam {
         id
         organizationId
       }
     }
-    integromatInitTriggerScenarios(teamId: $teamId) {
+    integromatInitTriggerScenarios(teamId: $teamId)  {
       id
       name
       description
@@ -17,7 +17,7 @@ export const QUERY_EXECUTION_TRIGGER_SCENARIOS = gql`
       isPaused
       usedPackages
     }
-    integromatMidTriggerScenarios(teamId: $teamId) {
+    integromatMidTriggerScenarios(teamId: $teamId)  {
       id
       name
       description
@@ -25,11 +25,11 @@ export const QUERY_EXECUTION_TRIGGER_SCENARIOS = gql`
       isPaused
       usedPackages
     }
-    integromatInitTriggerTemplates(teamId: $teamId) {
+    integromatInitTriggerTemplates(teamId: $teamId)  {
       id
       url
     }
-    integromatMidTriggerTemplates(teamId: $teamId) {
+    integromatMidTriggerTemplates(teamId: $teamId)  {
       id
       url
     }

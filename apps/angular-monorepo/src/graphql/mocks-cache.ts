@@ -1,3 +1,5 @@
+// <-------- Examples of mocking with typenames and use them in the cache ------->
+
 const getRandomIndex = (array: any[]) => {
     return Math.floor(Math.random() * array.length)
 }
@@ -11,7 +13,7 @@ const getRandomDate = (start = new Date(2022, 0, 1), end = new Date()) => {
     return new Date(randomTimestamp).toISOString();
 }
 
-const getRandomId = () => {
+export const getRandomId = () => {
     const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     let id = '01';
     for (let i = 0; i < 23; i++) {
@@ -138,11 +140,20 @@ const httpMethodCloudFunction = () => {
     const options = [
         "GET",
         "POST",
-        "PUT"
+        "PUT",
+        "HEAD",
+        "OPTIONS"
     ]
     return options[getRandomIndex(options)]
 }
 
+const providerCloudGroup = () => {
+  const options = [ "azure", "aws", "gcp"]
+  return options[getRandomIndex(options)]
+}
+
+
+/* Example of most of the DIGITAL PROCESS Mock */
 export const DIGITAL_PROCESS_MOCK = {
     fields: {
       name: {
@@ -208,6 +219,7 @@ export const DIGITAL_PROCESS_MOCK = {
     },
 }
 
+/* Example of the fields of BUSINESS EXPRESSION mock */
 export const BUSINESS_EXPRESSION_MOCK = {
     fields: {
       id: {
@@ -238,6 +250,7 @@ export const BUSINESS_EXPRESSION_MOCK = {
     },
 }
 
+/* Example of the fields of CLOUD FUNCTION mock */
 export const CLOUD_FUNCTION_MOCK = {
     fields: {
       id: {
@@ -283,6 +296,38 @@ export const CLOUD_FUNCTION_MOCK = {
     },
 }
 
+/* Example of the fields of CLOUD GROUP mock */
+export const CLOUD_GROUP_MOCK = {
+  fields: {
+    authentication: {
+      read() {
+          return authenticationCloudFunction()
+      },
+    },
+    id: {
+      read() {
+        return getRandomId()
+      },
+    },
+    name: {
+      read() {
+        return mockShortText()
+      },
+    },
+    parentGroupId: {
+      read() {
+        return getRandomId()
+      },
+    },
+    provider: {
+      read() {
+        return providerCloudGroup()
+      },
+    }
+  },
+}
+
+/* Example of the fields of PAGINATION mock */
 export const PAGE_INFO_MOCK = {
     fields: {
         page: {

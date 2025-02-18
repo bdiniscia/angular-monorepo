@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client'
+import { gql } from '@apollo/client/core'
 
 export const QUERY_CLOUD_FUNCTIONS = gql`
   query CloudFunctions(
@@ -6,7 +6,7 @@ export const QUERY_CLOUD_FUNCTIONS = gql`
     $sort: JSON
     $paging: PageInfoInput
   ) {
-    cloudFunctions(filter: $filter, sort: $sort, paging: $paging) {
+    cloudFunctions(filter: $filter, sort: $sort, paging: $paging) @client {
       cloudFunctions {
         authentication {
           basic

@@ -2,17 +2,18 @@ import { HttpHeaders } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import type { ApolloClientOptions} from '@apollo/client/core';
 import { InMemoryCache, makeVar } from '@apollo/client/core';
-import { ApolloModule, APOLLO_OPTIONS } from 'apollo-angular';
+import { ApolloModule, APOLLO_OPTIONS, Query } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
-import { BUSINESS_EXPRESSION_MOCK, CLOUD_FUNCTION_MOCK, DIGITAL_PROCESS_MOCK, PAGE_INFO_MOCK } from './mocks';
+import { BUSINESS_EXPRESSION_MOCK, CLOUD_FUNCTION_MOCK, CLOUD_GROUP_MOCK, DIGITAL_PROCESS_MOCK, PAGE_INFO_MOCK } from './mocks-cache';
+import { businessExpressionsResponse, cloudFunctionsResponse, cloudGroupsResponse, createExecutionTemplateResponse, cxpAccountResponse, digitalProcessResponse, draftDigitalProcessResponse, eventTypesResponse, executionStepsTemplatesResponse, executionTemplateRunDetailsResponse, executionTemplateRunsResponse, executionTemplatesResponse, executionTemplateVersionResponse, integromatExecutionStepScenariosResponse, integromatInitTriggerScenariosResponse, integromatInitTriggerTemplatesResponse, integromatMidTriggerScenariosResponse, integromatMidTriggerTemplatesResponse, integromatScenarioBlueprintResponse, validateExecutionTemplateResponse, webhooksEventsFilteredByHeadersResponse } from './mocks-resolvers';
 
 // get the authentication token from local storage if it exists
 const token = '';
 
+// const uri = '/graphql'; // <-- add the URL of the GraphQL server here
 const uri = 'https://api.orchestrationengine.io/oe-bff'; // <-- add the URL of the GraphQL server here
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-const executionTemplatesVar = makeVar<any[]>([]);
 
 export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
    const headers = new HttpHeaders({
@@ -29,24 +30,37 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
       typePolicies: {
         ExecutionTemplate: DIGITAL_PROCESS_MOCK,
         BusinessExpression: BUSINESS_EXPRESSION_MOCK,
-        CloudFunction: CLOUD_FUNCTION_MOCK,
+        //CloudFunction: CLOUD_FUNCTION_MOCK,
         PageInfo: PAGE_INFO_MOCK,
+        CloudGroup: CLOUD_GROUP_MOCK,
       },
     }),
     resolvers: {
+      Query: {
+        cloudFunctions: () => cloudFunctionsResponse(),
+        businessExpressions: () => businessExpressionsResponse(),
+        cloudGroups: () => cloudGroupsResponse(),
+        getDraft: () => draftDigitalProcessResponse(),
+        eventTypes: () => eventTypesResponse(),
+        integromatExecutionStepsTemplates: () => executionStepsTemplatesResponse(),
+        cxpAccount: () => cxpAccountResponse(),
+        integromatExecutionStepScenarios: () => integromatExecutionStepScenariosResponse(),
+        executionTemplate: () => digitalProcessResponse(),
+        executionTemplateRunDetails: () => executionTemplateRunDetailsResponse(),
+        executionTemplateRuns: () => executionTemplateRunsResponse(),
+        executionTemplateVersion: () => executionTemplateVersionResponse(),
+        executionTemplates: () => executionTemplatesResponse(),
+        integromatInitTriggerScenarios: () => integromatInitTriggerScenariosResponse(),
+        integromatInitTriggerTemplates: () => integromatInitTriggerTemplatesResponse(),
+        integromatMidTriggerScenarios: () => integromatMidTriggerScenariosResponse(),
+        integromatMidTriggerTemplates: () => integromatMidTriggerTemplatesResponse(),
+        integromatScenarioBlueprint: () => integromatScenarioBlueprintResponse(),
+        validateExecutionTemplate: () => validateExecutionTemplateResponse(),
+        webhooksEventsFilteredByHeaders: () => webhooksEventsFilteredByHeadersResponse()
+      },
       Mutation: {
-        createExecutionTemplate: (_: any, { executionTemplate }: any) => {
-          const newTemplate = {
-            id: (Math.random() * 10000).toFixed(0), // Generate a random ID
-            version: { id: (Math.random() * 10000).toFixed(0) } // Generate a version ID
-          };
-    
-          // Store locally using makeVar
-          executionTemplatesVar([...executionTemplatesVar(), newTemplate]);
-  
-          return newTemplate;
-        }
-      }
+        createExecutionTemplate: (_: any, { executionTemplate }: any) => createExecutionTemplateResponse()
+      },
     },
     defaultOptions: {
       watchQuery: {
@@ -72,3 +86,4 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   })
 
 export class GraphQLModule { }
+
